@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package sumadorview;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,6 +50,11 @@ public class EjemploVista extends javax.swing.JFrame {
 
         jbLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
 
         jbSumar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbSumar.setText("Sumar");
@@ -145,8 +148,30 @@ public class EjemploVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jtNro1ActionPerformed
 
     private void jbSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSumarActionPerformed
-        // TODO add your handling code here:
+        boolean clean = false;
+        
+        try {
+            int nro1 = Integer.parseInt(jtNro1.getText());
+            int nro2 = Integer.parseInt(jtNro2.getText());
+            int resultado = nro1 + nro2;
+            //agregamos las comillas para que lo transforme a String
+            jlResultado.setText(resultado + " ");
+
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar solo enteros");
+           //Limpiamos el buffer con la funcion
+            jbLimpiarActionPerformed(evt);
+        }
+
     }//GEN-LAST:event_jbSumarActionPerformed
+
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+
+        jtNro1.setText("");
+        jtNro2.setText("");
+        jlResultado.setText("Resultado");
+
+    }//GEN-LAST:event_jbLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
